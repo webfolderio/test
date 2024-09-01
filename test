@@ -1,0 +1,22 @@
+FROM ubuntu:latest
+
+# Set the encoding to UTF-8
+ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
+
+# Update and install required packages
+RUN apt-get update && apt-get install -y \
+    nano \
+    wget \
+    curl \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create a directory for git projects
+RUN mkdir -p /projects
+
+# Set the working directory
+WORKDIR /projects
+
+# Set the entrypoint to bash
+ENTRYPOINT ["/bin/bash"]
